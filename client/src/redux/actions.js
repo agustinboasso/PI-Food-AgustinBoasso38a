@@ -91,15 +91,7 @@ export const setCurrentPage = (pageNumber) => {
 };
 
 
-//trae el detalles las recetas
-// /:idRecipe
-// export const getRecipeId = (id) => {
-//     return async function (dispatch){
-//         const apiData = await axios.get(`http://localhost:3001/recipes/:idRecipes`)
-//         const user = apiData.data;
-//         dispatch({type: GET_USER, payload: recipe})
-//     }
-// }
+
 
 //filtros van aca
 

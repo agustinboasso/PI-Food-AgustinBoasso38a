@@ -1,0 +1,19 @@
+.pagination {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center;
+    flex-wrap: wrap; /* Permitir que los botones se envuelvan a una nueva línea si no caben en una sola línea */
+  }
+  
+  .pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #f1f1f1;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .pagination button.active {
+    background-color: #428bca;
+    color: #fff;
+  }

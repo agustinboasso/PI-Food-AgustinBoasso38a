@@ -1,6 +1,6 @@
 import {useState} from "react"
 import styles from './SearchBar.module.css'
-import { searchRecipes } from "../../redux/actions";
+import { searchRecipes,setCurrentPage } from "../../redux/actions";
 import {useDispatch} from "react-redux"
 
 const SearchBar = () => {
@@ -12,6 +12,7 @@ const SearchBar = () => {
    }
    
    const handleSearch = () => {
+      dispatch(setCurrentPage(1))
       dispatch(searchRecipes(id))
       
    }

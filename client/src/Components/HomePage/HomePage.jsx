@@ -23,7 +23,7 @@ const HomePage = () => {
         <h1>HOME PAGE:</h1>
         <h2>Aqui deben ir botones de filtro, de ordenamiento y de crear receta</h2>
         
-
+        <Pagination/>
         <Cards />
         <Pagination/>
     </div>
