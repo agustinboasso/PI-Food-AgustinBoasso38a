@@ -6,7 +6,8 @@ export const GET_RECIPES = "GET_RECIPES";
 export const SRC_RECIPE = "SRC_RECIPE";
 export const GET_RECIPEID = "GET_RECIPEID";
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
-
+export const SET_SELECTED_DIET_TYPE ='SET_SELECTED_DIET_TYPE';
+export const SORT_RECIPES ='SORT_RECIPES';
 //trae todas las recetas
 export const getRecipes = () => {
     return async function (dispatch){
@@ -91,6 +92,13 @@ export const setCurrentPage = (pageNumber) => {
 };
 
 
+
+export const sortRecipes = (option, direction) => {
+  return {
+    type: SORT_RECIPES,
+    payload: { option, direction }
+  };
+};
 
 
 //filtros van aca

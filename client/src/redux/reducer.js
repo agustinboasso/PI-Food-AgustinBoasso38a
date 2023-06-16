@@ -1,9 +1,10 @@
-import { GET_RECIPES, ADD_RECIPE, GET_DIETS, SRC_RECIPE, GET_RECIPEID, CLEAN_DETAIL, SET_CURRENT_PAGE  } from "./actions";
+import { GET_RECIPES, ADD_RECIPE, GET_DIETS, SRC_RECIPE, GET_RECIPEID, CLEAN_DETAIL, SET_CURRENT_PAGE, SORT_RECIPES  } from "./actions";
 
 const initialState = {
   recipes: [],
   dietOptions: [],
   currentPage: 1,
+  selectedDietType: null,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -39,11 +40,38 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           recipes: [],
         };
-     case SET_CURRENT_PAGE:
+      case SET_CURRENT_PAGE:
         return {
           ...state,
           currentPage: action.payload,
-        };        
+        };
+        case SORT_RECIPES:
+          const { option, direction } = action.payload;
+    
+          // Realizar el ordenamiento de las recetas
+          let sortedRecipes = [...state.recipes];
+          if (option === 'alphabetical') {
+            sortedRecipes.sort((a, b) => {
+              if (direction === 'asc') {
+                return a.name.localeCompare(b.name);
+              } else {
+                return b.name.localeCompare(a.name);
+              }
+            });
+          } else if (option === 'healthScore') {
+            sortedRecipes.sort((a, b) => {
+              if (direction === 'asc') {
+                return a.healthScore - b.healthScore;
+              } else {
+                return b.healthScore - a.healthScore;
+              }
+            });
+          }
+    
+          return {
+            ...state,
+            recipes: sortedRecipes,
+          };;          
     default:
       return state;
   }
