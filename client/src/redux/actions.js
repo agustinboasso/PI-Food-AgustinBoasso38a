@@ -1,5 +1,5 @@
 import axios from "axios"
-
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 export const GET_DIETS = "GET_DIETS";
 export const ADD_RECIPE = "ADD_RECIPE"
 export const GET_RECIPES = "GET_RECIPES";
@@ -82,6 +82,14 @@ export const getRecipeId = (id) => {
 export const cleanDetail = () => {
   return {type:CLEAN_DETAIL}  
 }
+
+export const setCurrentPage = (pageNumber) => {
+  return {
+    type: SET_CURRENT_PAGE,
+    payload: pageNumber,
+  };
+};
+
 
 //trae el detalles las recetas
 // /:idRecipe

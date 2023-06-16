@@ -3,6 +3,8 @@ import styles from './HomePage.module.css';
 import {useEffect} from "react";
 import { useDispatch } from 'react-redux';
 import {getRecipes} from "../../redux/actions"
+import Pagination from '../Pagination/Pagination';
+
 
 
 
@@ -23,6 +25,7 @@ const HomePage = () => {
         
 
         <Cards />
+        <Pagination/>
     </div>
   )
 }

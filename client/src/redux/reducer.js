@@ -1,8 +1,9 @@
-import { GET_RECIPES, ADD_RECIPE, GET_DIETS, SRC_RECIPE, GET_RECIPEID, CLEAN_DETAIL  } from "./actions";
+import { GET_RECIPES, ADD_RECIPE, GET_DIETS, SRC_RECIPE, GET_RECIPEID, CLEAN_DETAIL, SET_CURRENT_PAGE  } from "./actions";
 
 const initialState = {
   recipes: [],
   dietOptions: [],
+  currentPage: 1,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -37,7 +38,12 @@ const rootReducer = (state = initialState, action) => {
         return{
           ...state,
           recipes: [],
-        }      
+        };
+     case SET_CURRENT_PAGE:
+        return {
+          ...state,
+          currentPage: action.payload,
+        };        
     default:
       return state;
   }
