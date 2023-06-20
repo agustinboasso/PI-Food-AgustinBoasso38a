@@ -1,8 +1,8 @@
-.container{
-    border : 3px solid red;
+.container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 1em;
-    
-}
+    padding: 2em; 
+    border: none; 
+  }

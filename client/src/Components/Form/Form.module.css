@@ -1,10 +1,28 @@
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('../../../public/Images/landingback.jpg')!important;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  
+}
+
+
 .form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 50px auto;
   padding: 20px;
-  max-width: 500px; /* Ajusta el ancho máximo según tu preferencia */
+  width: 80%; 
+  max-width: 600px; 
   background-color: #f5f5f5;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -43,7 +61,7 @@
   background-color: #634727;
 }
 
-/* Estilos para el componente de Select */
+
 .select-container {
   width: 100%;
   margin-bottom: 10px;
@@ -94,7 +112,7 @@
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-/* Estilos adicionales */
+
 textarea {
   height: 100px;
 }
@@ -103,15 +121,15 @@ button[type="submit"] {
   font-weight: bold;
 }
 
-/* Estilos para la imagen de fondo */
+
 .background-container {
   background-image: url('../../../public/Images/landingback.jpg')!important;
   background-size: cover;
-    background-position: center center;
-    background-repeat: no repeat;
-    background-attachment: fixed;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-
-};
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  margin-top: -50px; 
+}

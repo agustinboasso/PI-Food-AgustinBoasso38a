@@ -1,4 +1,5 @@
 import axios from "axios"
+//import {modificatedResults} from './los100'
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 export const GET_DIETS = "GET_DIETS";
 export const ADD_RECIPE = "ADD_RECIPE"
@@ -8,11 +9,17 @@ export const GET_RECIPEID = "GET_RECIPEID";
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
 export const SET_SELECTED_DIET_TYPE ='SET_SELECTED_DIET_TYPE';
 export const SORT_RECIPES ='SORT_RECIPES';
+export const FILTER_BY_DIET = 'FILTER_BY_DIET';
+
+
+
 //trae todas las recetas
 export const getRecipes = () => {
     return async function (dispatch){
-        const apiData = await axios.get(`http://localhost:3001/recipes`)
-        const recipes = apiData.data;
+          const apiData = await axios.get(`http://localhost:3001/recipes`)
+          const recipes = apiData.data;
+        //const recipes = modificatedResults
+
         dispatch({type: GET_RECIPES, payload: recipes})
     }
 }
@@ -101,8 +108,17 @@ export const sortRecipes = (option, direction) => {
 };
 
 
-//filtros van aca
+export function filterByDiet(diet) {
+        return{
+         type: FILTER_BY_DIET, payload: diet 
+      }
+    
+  };
+export const FILTER_BY_SOURCE = 'FILTER_BY_SOURCE';
 
-// export const filterBySource = ()=>{
-//     dispatch({type: FILTER_GET, payload:)
-// } 
+export function filterBySource(source) {
+  return {
+    type: FILTER_BY_SOURCE,
+    payload: source,
+  };
+}

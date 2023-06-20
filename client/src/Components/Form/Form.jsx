@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import { addRecipe, getDiets } from '../../redux/actions';
-import styles from './Form.module.css'; // Asegúrate de tener el nombre correcto del archivo CSS
+import styles from './Form.module.css';
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -71,45 +71,47 @@ const Form = () => {
   };
 
   return (
-    <form className={`${styles['form-container']} background-container`} onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" value={form.name} onChange={handleChange} name="name" />
-      </label>
-      <br />
-      <label>
-        Summary:
-        <input type="text" value={form.summary} onChange={handleChange} name="summary" />
-      </label>
-      <br />
-      <label>
-        Image:
-        <input type="text" value={form.image} onChange={handleChange} name="image" />
-      </label>
-      <br />
-      <label>
-        Health Score:
-        <input type="number" value={form.healthScore} onChange={handleChange} name="healthScore" />
-      </label>
-      <br />
-      <label>
-        Diets:
-        <div className={styles['select-container']}>
-          <Select
-            isMulti
-            options={dietOptions.map((diet) => ({ value: diet.name, label: diet.name }))}
-            onChange={handleSelectChange}
-          />
-        </div>
-      </label>
-      <br />
-      <label>
-        Steps:
-        <textarea value={form.stepByStep} onChange={handleChange} name="stepByStep"></textarea>
-      </label>
-      <br />
-      <button type="submit">Submit</button>
-    </form>
+    <div className={styles['form-wrapper']}>
+      <form className={styles['form-container']} onSubmit={handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={form.name} onChange={handleChange} name="name" />
+        </label>
+        <br />
+        <label>
+          Summary:
+          <input type="text" value={form.summary} onChange={handleChange} name="summary" />
+        </label>
+        <br />
+        <label>
+          URL Image:
+          <input type="text" value={form.image} onChange={handleChange} name="image" />
+        </label>
+        <br />
+        <label>
+          Health Score:
+          <input type="number" value={form.healthScore} onChange={handleChange} name="healthScore" />
+        </label>
+        <br />
+        <label>
+          Diets:
+          <div className={styles['select-container']}>
+            <Select
+              isMulti
+              options={dietOptions.map((diet) => ({ value: diet.name, label: diet.name }))}
+              onChange={handleSelectChange}
+            />
+          </div>
+        </label>
+        <br />
+        <label>
+          Steps:
+          <textarea value={form.stepByStep} onChange={handleChange} name="stepByStep"></textarea>
+        </label>
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   );
 };
 

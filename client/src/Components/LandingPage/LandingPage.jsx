@@ -6,7 +6,7 @@ const LandingPage = () => {
       
       
       
-      <h1>Landing Page</h1>
+      
       <NavLink to='/home'>
           <div className={styles.buttoncontainer}>
             <button className={styles.button}>GET STARTED</button>

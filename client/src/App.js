@@ -4,6 +4,7 @@ import LandingPage from './Components/LandingPage/LandingPage';
 import NavBar from './Components/NavBar/NavBar'
 import Detail from './Components/Detail/Detail';
 import Form from './Components/Form/Form';
+import Footer from './Components/Footer/Footer';
 
 import {Route,Routes, useLocation} from "react-router-dom";
 
@@ -22,6 +23,7 @@ function App() {
           
           
       </Routes>
+      {pathname !== "/" && <Footer  />}{" "}
     </div>
   );
 }

@@ -14,7 +14,7 @@ const cleanArray = (arr) => arr.map((e) =>{
 
 const getDiets = async () => {
   const apiRes = (
-    await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true&number=100`)
+    await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true&number=100`)  //https://api.spoonacular.com/
   ).data
   const newApi = cleanArray(apiRes.results);
 
@@ -28,7 +28,7 @@ const getDiets = async () => {
 
   //convertir conjunto de dietas en array
   const dietNamesUnique = [...dietNames];
-  console.log(dietNamesUnique);
+ 
 
   //guardar nombres de dietas en la bdd usando sql
 
@@ -40,11 +40,6 @@ const getDiets = async () => {
   const dataBaseDiets = await Diet.findAll();
   return [...dataBaseDiets];
 };
-
-// const postDiet = async (name) => {
-//   const newDiet = await Diet.create(name);
-//   return newDiet;
-// };
 
 module.exports = {
   getDiets,

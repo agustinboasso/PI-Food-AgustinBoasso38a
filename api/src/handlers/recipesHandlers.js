@@ -23,36 +23,6 @@ const getRecipesHandler = async (req, res) => {
  }
 
 
-// const getRecipesById = async (req, res) => {
-//   const { idRecipe } = req.params;
-//   const source = isNaN(idRecipe) ? "bdd" : "api";
-
-//   try {
-//     let recipe;
-
-//     if (source === "api") {
-//       recipe = await getIdRecipes(idRecipe);
-//     } else {
-//       recipe = await Recipe.findByPk(idRecipe, {
-//         include: {
-//           model: Diet,
-//           attributes: ["name"],
-//           through: { attributes: [] },
-//         },
-//       });
-//     }
-
-//     res.status(200).json(cleanArray([recipe]));
-//   } catch (error) {
-//     res.status(400).json({ error: error.message });
-//   }
-// };
-
-
-
-
-
-
 //post, create recipe 
 const postRecipesHandler = async (req, res) => {
     

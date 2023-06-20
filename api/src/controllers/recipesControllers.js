@@ -13,30 +13,29 @@ const cleanArray = (arr) =>
       summary: ele.summary.replace(/<[^>]+>/g, ""),
       healthScore: ele.healthScore,
       diets: ele.diets
+      
     };
   });
   
 
 const createRecipe = async ( id,name , summary, image, healthScore, diets, stepByStep) => {
     const newRecipe = await Recipe.create({id, name , summary, image, healthScore, diets, stepByStep})
-    console.log(stepByStep)
-    
-    const dietsArr = await Promise.all(diets.map(async(d)=>{return await Diet.findOne({where:{name : d}})}))
-  //   const arreTypes = await Promise.all(type.map(async(t)=>{
-  //     return await Type.findOne({ where: { name: t } });
-  // }))
-    //diets.map(async (diet)=> newRecipe.addDiet(diet))
-    newRecipe.addDiet(dietsArr)
-    
+    //console.log(stepByStep)
+    const dietsArr = await Promise.all(diets.map(async(d)=>{return await Diet.findOne({where:{name : d}})}))  
     return newRecipe;
 }
 
 const getIdRecipes = async (id, source) => { 
     let recipe = null;
     if(source === "api"){
-      let response = (await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)).data
+      let response = (await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)).data // https://api.spoonacular.com 
+      let aux = response 
       response = cleanArray([response])
       recipe = response[0]
+      recipe.stepByStep = [];
+      for(let i = 0; i < aux.analyzedInstructions[0].steps.length; i++) {
+        recipe.stepByStep.push(aux.analyzedInstructions[0].steps[i].step);
+      }
     } else {
       let responseDB = await Recipe.findOne({where: {id}, include: {model: Diet, attributes: ["name"], through:{attributes:[],}} });
              for (let j=0; j<responseDB.dataValues.diets.length;j++){     
@@ -44,7 +43,6 @@ const getIdRecipes = async (id, source) => {
           } 
       recipe = responseDB.dataValues
     }
-    console.log(recipe) 
     return recipe; 
  }
 
@@ -52,9 +50,7 @@ const getIdRecipes = async (id, source) => {
 
 const searchRecipeByName = async (name) => {
   const lowerCaseName = name.toLowerCase();  
-  // const dbRecipes = await Recipe.findAll({where: { name: { [Op.iLike]: `%${name}%` }}})
   let dbRecipes = await Recipe.findAll({ where: { name: { [Op.iLike]: `%${name}%` } }, include: {model: Diet, attributes: ["name"], through:{attributes:[],}} });
-  // console.log(dbRecipes[0].dataValues.diets);
   for (let i=0; i<dbRecipes.length;i++){
     for (let j=0; j<dbRecipes[i].dataValues.diets.length;j++){     
       dbRecipes[i].dataValues.diets[j] = dbRecipes[i].dataValues.diets[j].dataValues.name
@@ -72,7 +68,6 @@ const searchRecipeByName = async (name) => {
 
 
 const getAllRecipes =  async () => {
-// buscar en bdd
 let databaseRecipes = await Recipe.findAll({include: {model: Diet, attributes:['name'], through:{attributes:[],}} });
 for (let i=0; i<databaseRecipes.length;i++){  
    for (let j=0; j<databaseRecipes[i].dataValues.diets.length;j++){
