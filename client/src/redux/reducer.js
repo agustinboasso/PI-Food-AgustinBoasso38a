@@ -109,8 +109,23 @@ const rootReducer = (state = initialState, action) => {
     case FILTER_BY_SOURCE: {
       const filteredRecipes =
         action.payload === 'all'
-          ? state.allRecipes
-          : state.allRecipes.filter((recipe) => recipe.source === action.payload);
+          ? state.allRecipes 
+          : state.allRecipes.filter((recipe) => {
+            if(action.payload === 'api') {
+              if(isNaN(recipe.id)){
+                return false;
+              } else {
+                return true;
+              }
+            } else {
+              if(isNaN(recipe.id)){
+                return true
+              } else {
+                return false
+              }
+            }
+          });
+         
       return {
         ...state,
         recipes: filteredRecipes,

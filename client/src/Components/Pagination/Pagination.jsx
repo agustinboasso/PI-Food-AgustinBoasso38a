@@ -11,6 +11,7 @@ const Pagination = () => {
 
   const handlePageChange = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
+    
   };
 
   const renderPageNumbers = () => {

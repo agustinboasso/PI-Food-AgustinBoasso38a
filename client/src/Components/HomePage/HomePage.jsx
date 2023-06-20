@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipes, sortRecipes, filterByDiet, getDiets, filterBySource } from '../../redux/actions';
+import { getRecipes, sortRecipes, filterByDiet, getDiets, filterBySource, setCurrentPage } from '../../redux/actions';
 import Cards from '../Cards/Cards';
 import styles from './HomePage.module.css';
 import Pagination from '../Pagination/Pagination';
@@ -27,6 +27,7 @@ const HomePage = () => {
 
   const handleSortAlphabetical = (direction) => {
     setSortAlphabetical(direction);
+    dispatch(setCurrentPage(1));
   };
 
   const handleSortHealthScore = (direction) => {
@@ -41,6 +42,7 @@ const HomePage = () => {
   const handleFilterSource = (e) => {
     e.preventDefault();
     dispatch(filterBySource(e.target.value));
+    dispatch(setCurrentPage(1))
   };
 
   // Filtrar las recetas según la dieta seleccionada y el origen (source) del archivo
@@ -54,7 +56,7 @@ const HomePage = () => {
 
   return (
     <div className={styles.homeContainer}>
-      <div className={styles.filterDropdowns}>
+      <div className={styles.filterContainer}>
         <div className={styles.filterDropdown}>
           <select value={sortAlphabetical} onChange={(e) => handleSortAlphabetical(e.target.value)}>
             <option value="asc">A-Z</option>
@@ -68,25 +70,25 @@ const HomePage = () => {
             <option value="asc">Poorly Healthy</option>
           </select>
         </div>
-      </div>
 
-      <div className={styles.dietFilter}>
-        <select onChange={handleFilterDiets} defaultValue={selectedDietType || 'all'}>
-          <option value="all">Diet Filter</option>
-          {dietOptions.map((el) => (
-            <option value={el.name} key={el.id}>
-              {el.name}
-            </option>
-          ))}
-        </select>
-      </div>
+        <div className={styles.filterDropdown}>
+          <select onChange={handleFilterDiets} defaultValue={selectedDietType || 'all'}>
+            <option value="all">Diet Filter</option>
+            {dietOptions.map((el) => (
+              <option value={el.name} key={el.id}>
+                {el.name}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <div className={styles.sourceFilter}>
-        <select onChange={handleFilterSource} defaultValue="db">
-          <option value="all">All Sources</option>
-          <option value="db">Database</option>
-          <option value="api">API Data</option>
-        </select>
+        <div className={styles.filterDropdown}>
+          <select onChange={handleFilterSource} defaultValue="all">
+            <option value="all">All Sources</option>
+            <option value="db">Database</option>
+            <option value="api">API Data</option>
+          </select>
+        </div>
       </div>
 
       <Pagination />
