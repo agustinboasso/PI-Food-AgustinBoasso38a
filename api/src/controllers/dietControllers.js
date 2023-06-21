@@ -14,7 +14,7 @@ const cleanArray = (arr) => arr.map((e) =>{
 
 const getDiets = async () => {
   const apiRes = (
-    await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true&number=100`)  //https://api.spoonacular.com/
+    await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true&number=100`)  //https://api.spoonacular.com/  http://localhost:8080
   ).data
   const newApi = cleanArray(apiRes.results);
 

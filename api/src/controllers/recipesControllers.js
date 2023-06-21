@@ -19,16 +19,19 @@ const cleanArray = (arr) =>
   
 
 const createRecipe = async ( id,name , summary, image, healthScore, diets, stepByStep) => {
-    const newRecipe = await Recipe.create({id, name , summary, image, healthScore, diets, stepByStep})
+    
+    const newRecipe = await Recipe.create({id, name , summary, image, healthScore, stepByStep})
     //console.log(stepByStep)
-    const dietsArr = await Promise.all(diets.map(async(d)=>{return await Diet.findOne({where:{name : d}})}))  
+    const dietsArr = await Promise.all(diets.map(async(d)=>{return await Diet.findOne({where:{name : d}})}))
+    newRecipe.addDiet(dietsArr) 
+    
     return newRecipe;
 }
 
 const getIdRecipes = async (id, source) => { 
     let recipe = null;
     if(source === "api"){
-      let response = (await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)).data // https://api.spoonacular.com 
+      let response = (await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)).data // https://api.spoonacular.com  http://localhost:8080
       let aux = response 
       response = cleanArray([response])
       recipe = response[0]

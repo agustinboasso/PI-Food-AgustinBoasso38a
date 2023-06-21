@@ -54,7 +54,7 @@ const Form = () => {
       alert('Los pasos deben tener al menos dos palabras');
       return;
     }
-
+    console.log(form)
     try {
       dispatch(addRecipe(form));
       setForm({
