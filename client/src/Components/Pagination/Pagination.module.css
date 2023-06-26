@@ -20,8 +20,8 @@
 .pagination button {
   margin: 0 5px;
   padding: 8px;
-  background-color: #f8f8f8;
-  border: none;
+  background-color: #f4bc0c;
+  border: 1px black transparent;
   cursor: pointer;
   border-radius: 4px;
   font-weight: bold;

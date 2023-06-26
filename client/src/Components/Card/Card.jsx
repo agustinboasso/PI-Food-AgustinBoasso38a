@@ -9,6 +9,7 @@ const Card = (props) => {
         <img src={props.image} alt={props.name} />
       </NavLink>
       <h2>DIET:</h2>
+      
       <ul>
         {props.diet.map((diet, index) => (
           <li key={index}>{diet}</li>

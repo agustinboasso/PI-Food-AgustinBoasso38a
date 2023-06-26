@@ -28,7 +28,6 @@ const postRecipesHandler = async (req, res) => {
     
   try {
     const { name, summary, image, healthScore, diets, stepByStep } = req.body;
-    console.log(stepByStep)
     const id = uuidv4(); // Generar un UUID válido
     const newRecipe = await createRecipe(id, name, summary, image, healthScore, diets, stepByStep);
     res.status(201).json(newRecipe);

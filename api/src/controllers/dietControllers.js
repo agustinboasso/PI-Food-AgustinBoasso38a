@@ -41,7 +41,14 @@ const getDiets = async () => {
   return [...dataBaseDiets];
 };
 
+
+
+const postDiets = async (name) => {
+  const newDiet = await Diet.create({name});
+  return newDiet; 
+}
+
 module.exports = {
   getDiets,
- 
+  postDiets
 };

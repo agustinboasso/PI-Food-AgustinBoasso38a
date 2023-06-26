@@ -10,8 +10,8 @@ const HomePage = () => {
 
   const [sortAlphabetical, setSortAlphabetical] = useState('asc');
   const [sortHealthScore, setSortHealthScore] = useState('desc');
-  const dietOptions = useSelector((state) => state.dietOptions);
-  const selectedDietType = useSelector((state) => state.selectedDietType);
+  const dietOptions = useSelector((state) => state.dietOptions); //todas las opciones de dieta disponibles
+  const selectedDietType = useSelector((state) => state.selectedDietType); // la opcion de dieta seleccionada actualmente
   const recipes = useSelector((state) => state.recipes);
   const [sourceFilter, setSourceFilter] = useState('all');
 
@@ -27,7 +27,7 @@ const HomePage = () => {
 
   const handleSortAlphabetical = (direction) => {
     setSortAlphabetical(direction);
-    dispatch(setCurrentPage(1));
+    //dispatch(setCurrentPage(1));
   };
 
   const handleSortHealthScore = (direction) => {

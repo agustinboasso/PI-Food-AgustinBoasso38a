@@ -88,8 +88,11 @@ export const getRecipeId = (id) => {
 };
 
 export const cleanDetail = () => {
-  return {type:CLEAN_DETAIL}  
-}
+  return {
+    type: CLEAN_DETAIL,
+    payload: []
+  };
+};
 
 export const setCurrentPage = (pageNumber) => {
   return {
